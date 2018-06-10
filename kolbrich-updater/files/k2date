@@ -1,0 +1,23 @@
+#!/bin/bash
+sed -i 's/installonly_limit=5/installonly_limit=2/' /etc/yum.conf
+sed -i 's/GRUB_DEFAULT=saved/GRUB_DEFAULT=0/' /etc/default/grub
+yum -y install https://packages.icinga.com/epel/icinga-rpm-release-7-latest.noarch.rpm
+yum clean all
+yum update -y
+yum -y groupinstall "Development Tools"
+yum update -y
+grub2-mkconfig -o /boot/grub2/grub.cfg
+systemctl enable haveged
+systemctl enable fail2ban
+systemctl disable NetworkManager
+systemctl mask NetworkManager
+systemctl enable network
+systemctl disable firewalld
+systemctl stop firewalld
+systemctl mask firewalld
+systemctl daemon-reload
+systemctl enable ntpd
+ntpdate ptbtime1.ptb.de
+sync
+sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
+reboot
