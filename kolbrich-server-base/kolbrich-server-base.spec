@@ -8,7 +8,6 @@ VCS:        {{{ git_vcs }}}
 Source:     {{{ git_pack }}}
 
 Requires: epel-release
-Requires: icinga-rpm-release
 Requires: nload
 Requires: net-tools
 Requires: tree
