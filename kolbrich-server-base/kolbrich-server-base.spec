@@ -8,6 +8,7 @@ VCS:        {{{ git_vcs }}}
 Source:     {{{ git_pack }}}
 
 Requires: epel-release
+Requires: bind-utils
 Requires: nload
 Requires: net-tools
 Requires: tree
